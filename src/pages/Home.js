@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 
 //Components
@@ -8,7 +8,7 @@ import Exercises from "../components/Exercises";
 
 const Home = () => {
 	const [bodyPart, setBodyPart] = useState("all");
-	const [exercise, setExercise] = useState([]);
+	const [exercises, setExercise] = useState([]);
 
 	return (
 		<Box>
@@ -20,7 +20,7 @@ const Home = () => {
 			/>
 			<Exercises
 				setExercise={setExercise}
-				bodyPart={bodyPart}
+				exercises={exercises}
 				setBodyPart={setBodyPart}
 			/>
 		</Box>
