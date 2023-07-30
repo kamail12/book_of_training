@@ -4,7 +4,6 @@ import { Box, Stack, Typography } from "@mui/material";
 
 import { exercisesOptions, fetchData } from "../utils/fetchData";
 import ExerciseCard from "./ExerciseCard";
-import BodyPart from "./BodyPart";
 
 const Exercises = ({ setExercise, exercises, bodyPart }) => {
 	const [currentPage, setCurrentPage] = useState(1);
