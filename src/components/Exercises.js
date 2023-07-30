@@ -4,8 +4,9 @@ import { Box, Stack, Typography } from "@mui/material";
 
 import { exercisesOptions, fetchData } from "../utils/fetchData";
 import ExerciseCard from "./ExerciseCard";
+import BodyPart from "./BodyPart";
 
-const Exercises = ({ setExercise, exercises, setBodyPart }) => {
+const Exercises = ({ setExercise, exercises, bodyPart }) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const exercisesPerPage = 9;
 
@@ -19,8 +20,29 @@ const Exercises = ({ setExercise, exercises, setBodyPart }) => {
 	const paginate = (e, value) => {
 		setCurrentPage(value);
 
-		window.scrollTo({ top: "1800px", behavior: "smooth" });
+		window.scrollTo({ top: "1800", behavior: "smooth" });
 	};
+
+	useEffect(() => {
+		const fetchExercisedata = async () => {
+			let exerciseData = [];
+
+			if (bodyPart === "all") {
+				exerciseData = await fetchData(
+					"https://exercisedb.p.rapidapi.com/exercises",
+					exercisesOptions
+				);
+			} else {
+				exerciseData = await fetchData(
+					`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
+					exercisesOptions
+				);
+			}
+			setExercise(exerciseData);
+		};
+		//Bez wywołania nie było by zadnego efektu bo funkcja jest stworzona ale nie uzyta
+		fetchExercisedata();
+	}, [bodyPart, setExercise]);
 
 	return (
 		<Box
