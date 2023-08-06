@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Button, Stack, TextField } from "@mui/material";
 
-import { fetchData, exercisesOptions } from "../utils/fetchData";
+import {
+	fetchData,
+	exercisesOptions,
+	MuscleWikiOptions,
+} from "../utils/fetchData";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
 const SearchExercises = ({ setExercise, bodyPart, setBodyPart }) => {
@@ -9,13 +13,24 @@ const SearchExercises = ({ setExercise, bodyPart, setBodyPart }) => {
 	const [bodyParts, setBodyParts] = useState([]);
 
 	useEffect(() => {
+		// const fetchExercisesData = async () => {
+		// 	const bodyPartsData = await fetchData(
+		// 		"https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
+		// 		exercisesOptions
+		// 	);
+
+		// 	setBodyParts(["all", ...bodyPartsData]);
+		// };
+
 		const fetchExercisesData = async () => {
-			const bodyPartsData = await fetchData(
-				"https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
-				exercisesOptions
+			const result = await fetchData(
+				"https://musclewiki.p.rapidapi.com/exercises/attributes",
+				MuscleWikiOptions
 			);
 
-			setBodyParts(["all", ...bodyPartsData]);
+			const exerciseData = result.categories;
+			
+			setBodyParts(["all", ...exerciseData]);
 		};
 
 		fetchExercisesData();

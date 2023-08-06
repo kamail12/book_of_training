@@ -6,6 +6,15 @@ export const exercisesOptions = {
 	},
 };
 
+export const MuscleWikiOptions = {
+	method: "GET",
+	headers: {
+		"X-RapidAPI-Key":
+			"effa00dbbcmsh6b33edcd66cb344p1ebc8cjsnc840b8f8d2f3",
+		"X-RapidAPI-Host": "musclewiki.p.rapidapi.com",
+	},
+};
+
 export const youtubeOptions = {
 	method: "GET",
 	headers: {
